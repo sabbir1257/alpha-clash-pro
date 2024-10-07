@@ -10,8 +10,13 @@
 //      // console.log(playgroundSection.classList);
 // }
 
+function continueGame(){
+     // step-1: generate a random alphabet
+}
+
 
 function play (){
      hiddenElementById('home-screen');
      showElementById('play-ground');
+     continueGame();
 }
