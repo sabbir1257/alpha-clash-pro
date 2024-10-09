@@ -10,6 +10,12 @@
 //      // console.log(playgroundSection.classList);
 // }
 
+function handleKeyboardButtiPress(){
+     console.log('button press');
+};
+
+document.addEventListener('keyup', handleKeyboardButtiPress)
+
 function continueGame(){
      // step -1: gnerate a random alphabet
      const alphabet = getARandomAlphabet();
