@@ -12,17 +12,19 @@
 
 function handleKeyboardKeyUpEvent(event){
      const playerPressed = event.key;
-     console.log('player pressed' ,playerPressed);
+     // console.log('player pressed' ,playerPressed);
 
      // get the expected to press
      const currentAlphabetElement = document.getElementById('current-alphabet');
      const currentAlphabet = currentAlphabetElement.innerText;
      const expectedAlphabet = currentAlphabet.toLocaleLowerCase();
-     console.log(playerPressed, expectedAlphabet);
+     // console.log(playerPressed, expectedAlphabet);
      
      // check matched or not 
      if(playerPressed === expectedAlphabet){
           console.log('you get a point');
+          removeBackgroundColorById(expectedAlphabet);
+          continueGame();
      }
      else{
           console.log('you missed. you lost a life');
