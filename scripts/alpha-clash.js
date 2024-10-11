@@ -10,7 +10,7 @@
 //      // console.log(playgroundSection.classList);
 // }
 
-function handleKeyboardKeyUpEvent(event){
+function handleKeyboardKeyUpEvent(event) {
      const playerPressed = event.key;
      // console.log('player pressed' ,playerPressed);
 
@@ -19,16 +19,16 @@ function handleKeyboardKeyUpEvent(event){
      const currentAlphabet = currentAlphabetElement.innerText;
      const expectedAlphabet = currentAlphabet.toLocaleLowerCase();
      // console.log(playerPressed, expectedAlphabet);
-     
+
      // check matched or not 
-     if(playerPressed === expectedAlphabet){
+     if (playerPressed === expectedAlphabet) {
           console.log('you get a point');
 
-          const currentScore = getTextElementValueById('current-score'); 
+          const currentScore = getTextElementValueById('current-score');
           const updatedScore = currentScore + 1;
           setTextElementValueById('current-score', updatedScore);
-          
-          
+
+
 
 
           // ------------------------------------------------------------------
@@ -36,7 +36,7 @@ function handleKeyboardKeyUpEvent(event){
           // 1. get the current score
           // const currentScoreElement = document.getElementById('current-score');
           // console.log(currentScoreElement);
-          
+
           // const currentScoreText = currentScoreElement.innerText;
           // const currentScore = parseInt(currentScoreText);
 
@@ -50,12 +50,15 @@ function handleKeyboardKeyUpEvent(event){
           removeBackgroundColorById(expectedAlphabet);
           continueGame();
      }
-     else{
+     else {
           console.log('you missed. you lost a life');
           const currentLife = getTextElementValueById('current-life');
           const updateLife = currentLife - 1;
           setTextElementValueById('current-life', updateLife);
 
+          if (updateLife === 0) {
+               gameOver();
+          };
 
           // ---------------------------------------------
           // step-1 : get the current life number
@@ -73,7 +76,7 @@ function handleKeyboardKeyUpEvent(event){
 
 document.addEventListener('keyup', handleKeyboardKeyUpEvent)
 
-function continueGame(){
+function continueGame() {
      // step -1: gnerate a random alphabet
      const alphabet = getARandomAlphabet();
 
@@ -85,8 +88,20 @@ function continueGame(){
      setBackgroundColorById(alphabet)
 }
 
-function play (){
+function play() {
+     // hide everything show only the playground
      hiddenElementById('home-screen');
+     hiddenElementById('final-score');
      showElementById('play-ground');
+
+     // reset score and life 
+     setTextElementValueById('current-life', 5);
+     setTextElementValueById('current-score', 0);
+
      continueGame();
+}
+
+function gameOver() {
+     hiddenElementById('play-ground');
+     showElementById('final-score');
 }
